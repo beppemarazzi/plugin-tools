@@ -54,7 +54,8 @@ export function getTemplateFiles(pluginType: string, filter?: string | string[])
  * @param pluginType - The type of the plugin
  */
 export function getProjectRelativeTemplatePath(file: string, pluginType: string) {
-  return file.replace(TEMPLATE_PATHS.common, '').replace(TEMPLATE_PATHS[pluginType], '').replace(/^\/+/, '');
+  const ret = file.replace(TEMPLATE_PATHS.common, '').replace(TEMPLATE_PATHS[pluginType], '');
+  return path.sep === '\\' ? ret.replace(/^\\+/, '') : ret.replace(/^\/+/, '');
 }
 
 export function compileTemplateFiles(filter?: string[], data?: any) {
